@@ -1,0 +1,79 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-sm-12">
+    <h2>Homepage</h2>
+  </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+  <div class="row">
+
+    <!-- Companies -->
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Companies</h5>
+        </div>
+        <div class="ibox-content">
+
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% _.each(companies, function (company) { %>
+                <tr>
+                    <td><%= company.id %></td>
+                    <td><%= company.name %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Associations -->
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Organizations</h5>
+        </div>
+        <div class="ibox-content">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Capital</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(organizations, function (organization) { %>
+            <tr>
+              <td><%= organization.id %></td>
+              <td><%= organization.name %></td>
+              <td><%= organization.capital %> ()</td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Page-Level Scripts -->
+<script>
+
+
+</script>
+

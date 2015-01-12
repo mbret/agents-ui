@@ -8,7 +8,7 @@ var Flight = {
     //id  : { type: 'string', unique: true, primaryKey: true, columnName: 'id', autoIncrement: true },
     company: { model: 'company', columnName: 'compagnie', required: true },
     plane: { model: 'plane', columnName: 'avion', required: true },
-    type: { type: 'string', columnName: 'type', required: true, enum: ['charter', ''] },
+    type: { type: 'string', columnName: 'type', required: true, enum: ['charter', 'regular'] },
     minGain: { type: 'integer' },
     totalGain: { type: 'integer' },
     pricePerLot: { type: 'integer' },

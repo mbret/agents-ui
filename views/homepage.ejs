@@ -9,36 +9,28 @@
   <div class="row">
 
     <!-- Country -->
-    <div class="col-lg-3">
+    <div class="col-lg-2">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Countries</h5></div>
         <div class="ibox-content">
-          <table class="table">
+          <table class="table table-hover dataTables-countries">
             <thead>
             <tr>
               <th>#</th>
               <th>Name</th>
             </tr>
             </thead>
-            <tbody>
-            <% _.each(countries, function (entry) { %>
-            <tr>
-              <td><%= entry.id %></td>
-              <td><%= entry.name %></td>
-            </tr>
-            <% }) %>
-            </tbody>
           </table>
         </div>
       </div>
     </div>
 
     <!-- Cities -->
-    <div class="col-lg-3">
+    <div class="col-lg-2">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Cities</h5></div>
         <div class="ibox-content">
-          <table class="table">
+          <table class="table table-hover">
             <thead>
             <tr>
               <th>#</th>
@@ -60,31 +52,6 @@
       </div>
     </div>
 
-    <!-- Companies -->
-    <div class="col-lg-3">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title"><h5>Companies</h5></div>
-        <div class="ibox-content">
-          <table class="table">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-            </tr>
-            </thead>
-            <tbody>
-                <% _.each(companies, function (company) { %>
-                <tr>
-                    <td><%= company.id %></td>
-                    <td><%= company.name %></td>
-                </tr>
-                <% }) %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
     <!-- Associations -->
     <div class="col-lg-3">
       <div class="ibox float-e-margins">
@@ -92,7 +59,7 @@
           <h5>Organizations</h5>
         </div>
         <div class="ibox-content">
-          <table class="table">
+          <table class="table table-hover">
             <thead>
             <tr>
               <th>#</th>
@@ -115,16 +82,37 @@
       </div>
     </div>
 
-  </div><!-- end: row -->
-
-  <div class="row">
+    <!-- Companies -->
+    <div class="col-lg-2">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Companies</h5></div>
+        <div class="ibox-content">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(companies, function (company) { %>
+            <tr>
+              <td><%= company.id %></td>
+              <td><%= company.name %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
     <!-- Planes -->
     <div class="col-lg-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Planes</h5></div>
         <div class="ibox-content">
-          <table class="table">
+          <table class="table table-hover">
             <thead>
             <tr>
               <th>#</th>
@@ -146,27 +134,216 @@
       </div>
     </div>
 
+  </div><!-- end: row -->
+
+  <div class="row">
+
     <!-- Flights -->
-    <div class="col-lg-3">
+    <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Flights</h5></div>
         <div class="ibox-content">
-          <table class="table">
+          <table class="table table-hover">
             <thead>
             <tr>
               <th>#</th>
               <th>Company</th>
               <th>Plane</th>
               <th>Type</th>
-              <th></th>
+              <th>Profit min.</th>
+              <th>Profit total</th>
+              <th>Price per lot</th>
+              <th>Departure date (planned)</th>
+              <th>Departure date (real)</th>
+              <th>Arrival date</th>
+              <th>Arrival city</th>
+              <th class="text-navy">Booked by</th>
+              <th class="text-navy">Nb. seats</th>
             </tr>
             </thead>
             <tbody>
-            <% _.each(planes, function (entry) { %>
+            <% _.each(flights, function (entry) { %>
             <tr>
               <td><%= entry.id %></td>
-              <td><%= entry.capacity %></td>
               <td><%= entry.company.name %></td>
+              <td><%= entry.plane.id %></td>
+              <td><%= entry.type %></td>
+              <td><%= entry.minProfit %> €</td>
+              <td><%= entry.totalProfit %> €</td>
+              <td><%= entry.pricePerLot %> €</td>
+              <td class="timestamp"><%= entry.departureDatePlanned %></td>
+              <td class="timestamp"><%= entry.departureDateReal %></td>
+              <td class="timestamp"><%= entry.arrivalDate %></td>
+              <td><%= entry.arrivalCity.name %></td>
+              <td class="text-navy">
+                <% _.each(entry.bookings, function (booking) { %>
+                  <%= booking.organization.name %><br>
+                <% }) %>
+              </td>
+              <td class="text-navy">
+                <% _.each(entry.bookings, function (booking) { %>
+                  <%= booking.seats %><br>
+                <% }) %>
+              </td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <!-- Diseases -->
+    <div class="col-lg-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Diseases</h5></div>
+        <div class="ibox-content">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Virulence</th>
+              <th>Incubation (days)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(diseases, function (entry) { %>
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.name %></td>
+              <td><%= entry.virulence %></td>
+              <td><%= entry.incubation %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vaccines -->
+    <div class="col-lg-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Vaccines</h5></div>
+        <div class="ibox-content">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Expire (days)</th>
+                <th>Price</th>
+                <th>For disease</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% _.each(vaccines, function (entry) { %>
+              <tr>
+                <td><%= entry.id %></td>
+                <td><%= entry.name %></td>
+                <td><%= entry.expire %></td>
+                <td><%= entry.price %> €</td>
+                <td><%= entry.treatenDisease.name %></td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patients -->
+    <div class="col-lg-5">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Sick (patients)</h5></div>
+        <div class="ibox-content">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Infected</th>
+              <th>Vaccinated</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(sick, function (entry) { %>
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.firstName %></td>
+              <td><%= entry.lastName %></td>
+              <td class="timestamp"><%= entry.infectedDay %></td>
+              <td class="timestamp"><%= entry.vaccinatedDay %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <!-- Laboratories -->
+    <div class="col-lg-5">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Laboratories</h5></div>
+        <div class="ibox-content">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(laboratories, function (entry) { %>
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.name %></td>
+              <td><%= entry.type %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Laboratories -->
+    <div class="col-lg-7">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Vaccine stocks</h5></div>
+        <div class="ibox-content">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Vaccine</th>
+              <th>Laboratory</th>
+              <th>Created at</th>
+              <th>Number</th>
+              <th>Unit price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(stocks, function (entry) { %>
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.vaccine.name %></td>
+              <td><%= entry.laboratory.name %></td>
+              <td class="timestamp"><%= entry.createdAt %></td>
+              <td><%= entry.number %></td>
+              <td><%= entry.unitPrice %></td>
             </tr>
             <% }) %>
             </tbody>
@@ -182,7 +359,26 @@
 
 <!-- Page-Level Scripts -->
 <script>
+$(document).ready(function() {
 
+    // Countries
+    var countriesTable = $('.dataTables-countries').DataTable({
+        "paging": false,
+        "ordering": false,
+        "info":     false,
+        "searching": false,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "/rest/countries",
+        "columns": [
+          { "data": "id" },
+          { "data": "name" },
+        ]
+    });
+    setInterval( function () {
+      countriesTable.ajax.reload();
+    }, 20000 );
 
+});
 </script>
 

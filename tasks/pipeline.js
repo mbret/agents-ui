@@ -23,23 +23,33 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
 
-  // Load sails.io before everything else
-  'js/dependencies/sails.io.js',
+    // Load sails.io before everything else
+    'js/dependencies/sails.io.js',
 
-  // Dependencies like jQuery, or Angular are brought in here
-  'js/dependencies/jquery-2.1.1.js',
-  'js/dependencies/bootstrap.min.js',
-  'js/dependencies/plugins/metisMenu/jquery.metisMenu.js',
-  'js/dependencies/plugins/slimscroll/jquery.slimscroll.min.js',
+    // Dependencies like jQuery, or Angular are brought in here
+    'js/dependencies/jquery-2.1.1.js',
+    'js/dependencies/bootstrap.min.js',
+    'js/dependencies/plugins/metisMenu/jquery.metisMenu.js',
+    'js/dependencies/plugins/slimscroll/jquery.slimscroll.min.js',
 
-  // datatable
-  'js/dependencies/plugins/dataTables/jquery.dataTables.js',
-  'js/dependencies/plugins/dataTables/dataTables.bootstrap.js',
-  'js/dependencies/plugins/dataTables/dataTables.responsive.js',
-  'js/dependencies/plugins/dataTables/dataTables.tableTools.min.js',
+    'js/dependencies/moment.js',
 
-  'js/script.js',
-  'js/dependencies/plugins/pace/pace.min.js'
+    // datatable
+    'js/dependencies/plugins/jeditable/jquery.jeditable.js',
+    'js/dependencies/plugins/dataTables/jquery.dataTables.js',
+    'js/dependencies/plugins/dataTables/dataTables.bootstrap.js',
+    'js/dependencies/plugins/dataTables/dataTables.responsive.js',
+    'js/dependencies/plugins/dataTables/dataTables.tableTools.min.js',
+
+    // Graph
+    'js/dependencies/plugins/flot/jquery.flot.js',
+    'js/dependencies/plugins/flot/jquery.flot.tooltip.min.js',
+    'js/dependencies/plugins/flot/jquery.flot.resize.js',
+    'js/dependencies/plugins/flot/jquery.flot.pie.js',
+    'js/dependencies/plugins/flot/jquery.flot.time.js',
+
+    'js/script.js',
+    'js/dependencies/plugins/pace/pace.min.js'
 
 ];
 

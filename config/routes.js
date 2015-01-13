@@ -32,7 +32,15 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'get /': 'IndexController.index'
+  'get /': 'IndexController.index',
+  'get /stats': 'IndexController.stats',
+  'get /organizations': 'IndexController.organizations',
+  'get /stats/infection-evol': 'StatsController.getInfections',
+  'get /stats/treaten-diseases-ratio': 'StatsController.getTreatenDiseasesRatio',
+  'get /stats/patients-per-country': 'StatsController.getSickPerCountry',
+
+  'get /rest/countries': 'RestController.getCountries',
+  'post /rest/donations': 'RestController.createDonation'
 
   /***************************************************************************
   *                                                                          *

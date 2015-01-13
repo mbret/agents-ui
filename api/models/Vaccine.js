@@ -7,10 +7,10 @@ var Vaccine = {
 
   attributes: {
     //id  : { type: 'string', unique: true, primaryKey: true, columnName: 'id', autoIncrement: true },
-    name  : { type: 'string',  columnName: 'nom' },
-    expire  : { type: 'date', columnName: 'expire' },
-    price  : { type: 'float', columnName: 'prix'},
-    treatenDisease  : { model: 'disease' }
+    name  : { type: 'string',  required: true, columnName: 'nom' },
+    expire  : { type: 'integer', required: true, columnName: 'expire' }, // days
+    price  : { type: 'float', required: true, columnName: 'prix'},
+    treatenDisease  : { model: 'disease', required: true, columnName: 'maladieTraitee' }
   }
 
 };

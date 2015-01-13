@@ -1,28 +1,18 @@
 // Custom scripts
 $(document).ready(function () {
 
+    // Init all date
+    $('.timestamp').each(function( index ){
+        if( $(this).text() == '' || $(this).text() == "null"  ){
+            $(this).html( '-' );
+        }
+        else{
+            $(this).html( moment.unix($(this).text()).format("MM/DD/YYYY, H:mm:ss") );
+        }
+    });
+
     // MetsiMenu
     $('#side-menu').metisMenu();
-
-    // Collapse ibox function
-    $('.collapse-link').click( function() {
-        var ibox = $(this).closest('div.ibox');
-        var button = $(this).find('i');
-        var content = ibox.find('div.ibox-content');
-        content.slideToggle(200);
-        button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
-        ibox.toggleClass('').toggleClass('border-bottom');
-        setTimeout(function () {
-            ibox.resize();
-            ibox.find('[id^=map-]').resize();
-        }, 50);
-    });
-
-    // Close ibox function
-    $('.close-link').click( function() {
-        var content = $(this).closest('div.ibox');
-        content.remove();
-    });
 
     // Small todo handler
     $('.check-link').click( function(){
@@ -32,17 +22,6 @@ $(document).ready(function () {
         label.toggleClass('todo-completed');
         return false;
     });
-
-    // Append config box / Only for demo purpose
-    $.get("skin-config.html", function (data) {
-        $('body').append(data);
-    });
-
-    // minimalize menu
-    $('.navbar-minimalize').click(function () {
-        $("body").toggleClass("mini-navbar");
-        SmoothlyMenu();
-    })
 
     // tooltips
     $('.tooltip-demo').tooltip({
@@ -82,22 +61,6 @@ $(document).ready(function () {
         .popover();
 });
 
-
-// For demo purpose - animation css script
-function animationHover(element, animation){
-    element = $(element);
-    element.hover(
-        function() {
-            element.addClass('animated ' + animation);
-        },
-        function(){
-            //wait for animation to finish before removing classes
-            window.setTimeout( function(){
-                element.removeClass('animated ' + animation);
-            }, 2000);
-        });
-}
-
 // Minimalize menu when screen is less than 768px
 $(function() {
     $(window).bind("load resize", function() {
@@ -129,21 +92,5 @@ function SmoothlyMenu() {
         $('#side-menu').removeAttr('style');
     }
 }
-
-// Dragable panels
-function WinMove() {
-    var element = "[class*=col]";
-    var handle = ".ibox-title";
-    var connect = "[class*=col]";
-    $(element).sortable(
-        {
-            handle: handle,
-            connectWith: connect,
-            tolerance: 'pointer',
-            forcePlaceholderSize: true,
-            opacity: 0.8,
-        })
-        .disableSelection();
-};
 
 

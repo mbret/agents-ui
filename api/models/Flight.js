@@ -9,13 +9,14 @@ var Flight = {
     company: { model: 'company', columnName: 'compagnie', required: true },
     plane: { model: 'plane', columnName: 'avion', required: true },
     type: { type: 'string', columnName: 'type', required: true, enum: ['charter', 'regular'] },
-    minGain: { type: 'integer' },
-    totalGain: { type: 'integer' },
-    pricePerLot: { type: 'integer' },
-    departureDatePlanned: { type: 'date' },
-    departureDateReal: { type: 'date' },
+    minProfit: { type: 'integer', required: true },
+    totalProfit: { type: 'integer', required: true },
+    pricePerLot: { type: 'integer', required: true },
+    departureDatePlanned: { type: 'integer' }, // timestamp
+    departureDateReal: { type: 'integer' }, // timestamp
     arrivalDate: { type: 'integer' }, // timestamp
-    arrivalCity: { type: 'integer' }
+    arrivalCity: { model: 'city' },
+    bookings: { collection: 'flightBooking', via: 'organization' }
   },
 
   beforeCreate: function (values, cb) {

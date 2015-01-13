@@ -6,7 +6,8 @@ var Country = {
 
   attributes: {
       //id  : { type: 'string', unique: true, primaryKey: true, columnName: 'id', autoIncrement: true },
-      name: { type:'string', unique: true, columnName: 'nom', required: true}
+      name: { type:'string', unique: true, columnName: 'nom', required: true},
+      patients: { collection: 'sick', via: 'country' }
   }
 
 };

@@ -14,6 +14,21 @@ var async = require('async');
 module.exports.bootstrap = function(cb) {
 
     async.waterfall([
+        // Organizations
+        function(cb){
+            var entries = [
+                { name: 'Organization a', capital: 150000 },
+                { name: 'Organization b', capital: 180000 },
+                { name: 'Organization c', capital: 90000 }
+            ];
+            async.map(entries, function(company, cb){
+                Organization.create(company).exec(function(err, company){
+                    return cb(err, company);
+                })
+            }, function(err, results){
+                return cb(err);
+            });
+        },
         // Country
         function(cb){
             var entries = [
@@ -54,7 +69,7 @@ module.exports.bootstrap = function(cb) {
               return cb(err, company);
             })
           }, function(err, results){
-            return cb(err, results);
+            return cb(err, countries, cities, results);
           });
         },
         // Planes

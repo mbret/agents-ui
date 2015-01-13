@@ -8,14 +8,63 @@
 
   <div class="row">
 
-    <!-- Companies -->
-    <div class="col-lg-6">
+    <!-- Country -->
+    <div class="col-lg-3">
       <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>Companies</h5>
-        </div>
+        <div class="ibox-title"><h5>Countries</h5></div>
         <div class="ibox-content">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(countries, function (entry) { %>
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.name %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
+    <!-- Cities -->
+    <div class="col-lg-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Cities</h5></div>
+        <div class="ibox-content">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Country</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(cities, function (entry) { %>
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.name %></td>
+              <td><%= entry.country.name %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Companies -->
+    <div class="col-lg-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Companies</h5></div>
+        <div class="ibox-content">
           <table class="table">
             <thead>
             <tr>
@@ -32,13 +81,12 @@
                 <% }) %>
             </tbody>
           </table>
-
         </div>
       </div>
     </div>
 
     <!-- Associations -->
-    <div class="col-lg-6">
+    <div class="col-lg-3">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <h5>Organizations</h5>
@@ -57,7 +105,7 @@
             <tr>
               <td><%= organization.id %></td>
               <td><%= organization.name %></td>
-              <td><%= organization.capital %> ()</td>
+              <td><%= organization.capital %> €</td>
             </tr>
             <% }) %>
             </tbody>
@@ -66,6 +114,67 @@
         </div>
       </div>
     </div>
+
+  </div><!-- end: row -->
+
+  <div class="row">
+
+    <!-- Planes -->
+    <div class="col-lg-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Planes</h5></div>
+        <div class="ibox-content">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Capacity</th>
+              <th>Company</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(planes, function (entry) { %>
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.capacity %></td>
+              <td><%= entry.company.name %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flights -->
+    <div class="col-lg-3">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Flights</h5></div>
+        <div class="ibox-content">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Company</th>
+              <th>Plane</th>
+              <th>Type</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(planes, function (entry) { %>
+            <tr>
+              <td><%= entry.id %></td>
+              <td><%= entry.capacity %></td>
+              <td><%= entry.company.name %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div>

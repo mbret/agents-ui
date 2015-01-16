@@ -40,7 +40,17 @@ module.exports.routes = {
   'get /stats/patients-per-country': 'StatsController.getSickPerCountry',
 
   'get /rest/countries': 'RestController.getCountries',
-  'post /rest/donations': 'RestController.createDonation'
+  'post /rest/donations': 'RestController.createDonation',
+  'get /rest/organizations': 'RestController.getOrganizations',
+  'get /rest/cities': 'RestController.getCities',
+  'get /rest/companies': 'RestController.getCompanies',
+  //'get /rest/planes': 'RestController.getPlanes',
+  'get /rest/flights': 'RestController.getFlights',
+  'get /rest/diseases': 'RestController.getDiseases',
+  'get /rest/vaccines': 'RestController.getVaccines',
+  'get /rest/laboratories': 'RestController.getLaboratories',
+  'get /rest/stocks': 'RestController.getStocks',
+  'get /rest/patients': 'RestController.getPatients'
 
   /***************************************************************************
   *                                                                          *

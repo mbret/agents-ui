@@ -7,16 +7,16 @@ var Flight = {
   attributes: {
     //id  : { type: 'string', unique: true, primaryKey: true, columnName: 'id', autoIncrement: true },
     company: { model: 'company', columnName: 'compagnie', required: true },
-    plane: { model: 'plane', columnName: 'avion', required: true },
+    //plane: { model: 'plane', columnName: 'avion', required: true },
     type: { type: 'string', columnName: 'type', required: true, enum: ['charter', 'regular'] },
-    minProfit: { type: 'integer', required: true },
-    totalProfit: { type: 'integer', required: true },
-    pricePerLot: { type: 'integer', required: true },
-    departureDatePlanned: { type: 'integer' }, // timestamp
-    departureDateReal: { type: 'integer' }, // timestamp
-    arrivalDate: { type: 'integer' }, // timestamp
-    arrivalCity: { model: 'city' },
-    bookings: { collection: 'flightBooking', via: 'organization' }
+    minProfit: { type: 'integer', required: true, columnName: 'margeMinimum' },
+    totalProfit: { type: 'integer', required: true, columnName: 'margeTotale' },
+    pricePerLot: { type: 'integer', required: true, columnName: 'prixParLot' },
+    departureDatePlanned: { type: 'integer', columnName: 'dateDepartPrevu' }, // timestamp
+    departureDateReal: { type: 'integer', columnName: 'dateDepartReel' }, // timestamp
+    arrivalDate: { type: 'integer', columnName: 'dateArrivee' }, // timestamp
+    arrivalCity: { model: 'city', columnName: 'villeArrivee' },
+    bookings: { collection: 'flightBooking', via: 'organization' },
   },
 
   beforeCreate: function (values, cb) {

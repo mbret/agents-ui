@@ -11,10 +11,10 @@ var BoughtVaccine = {
   attributes: {
     sum  : { type: 'integer', columnName: 'somme' },
     number  : { type: 'integer', columnName: 'nombre' },
-    date  : { type: 'date' },
-    laboratory  : { model: 'laboratory' },
-    vaccine  : { model: 'vaccine' },
-    organization: { model: 'organization' }
+    date  : { type: 'date', columnName: 'dateAchat' },
+    laboratory  : { model: 'laboratory', columnName: 'laboratoire' },
+    vaccine  : { model: 'vaccine', columnName: 'vaccin' },
+    organization: { model: 'organization', columnName: 'association' }
   }
 }
 module.exports = BoughtVaccine;

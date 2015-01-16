@@ -9,7 +9,7 @@
   <div class="row">
 
     <!-- Country -->
-    <div class="col-lg-2">
+    <div class="col-lg-4">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Countries</h5></div>
         <div class="ibox-content">
@@ -26,11 +26,11 @@
     </div>
 
     <!-- Cities -->
-    <div class="col-lg-2">
+    <div class="col-lg-4">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Cities</h5></div>
         <div class="ibox-content">
-          <table class="table table-hover">
+          <table class="table table-hover datatable-cities">
             <thead>
             <tr>
               <th>#</th>
@@ -38,28 +38,19 @@
               <th>Country</th>
             </tr>
             </thead>
-            <tbody>
-            <% _.each(cities, function (entry) { %>
-            <tr>
-              <td><%= entry.id %></td>
-              <td><%= entry.name %></td>
-              <td><%= entry.country.name %></td>
-            </tr>
-            <% }) %>
-            </tbody>
           </table>
         </div>
       </div>
     </div>
 
     <!-- Associations -->
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <h5>Organizations</h5>
         </div>
         <div class="ibox-content">
-          <table class="table table-hover">
+          <table class="table table-hover datatable-organizations">
             <thead>
             <tr>
               <th>#</th>
@@ -67,69 +58,8 @@
               <th>Capital</th>
             </tr>
             </thead>
-            <tbody>
-            <% _.each(organizations, function (organization) { %>
-            <tr>
-              <td><%= organization.id %></td>
-              <td><%= organization.name %></td>
-              <td><%= organization.capital %> €</td>
-            </tr>
-            <% }) %>
-            </tbody>
           </table>
 
-        </div>
-      </div>
-    </div>
-
-    <!-- Companies -->
-    <div class="col-lg-2">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title"><h5>Companies</h5></div>
-        <div class="ibox-content">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% _.each(companies, function (company) { %>
-            <tr>
-              <td><%= company.id %></td>
-              <td><%= company.name %></td>
-            </tr>
-            <% }) %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- Planes -->
-    <div class="col-lg-3">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title"><h5>Planes</h5></div>
-        <div class="ibox-content">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Capacity</th>
-              <th>Company</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% _.each(planes, function (entry) { %>
-            <tr>
-              <td><%= entry.id %></td>
-              <td><%= entry.capacity %></td>
-              <td><%= entry.company.name %></td>
-            </tr>
-            <% }) %>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
@@ -138,17 +68,55 @@
 
   <div class="row">
 
+    <!-- Companies -->
+    <div class="col-lg-5">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Companies</h5></div>
+        <div class="ibox-content">
+          <table class="table table-hover datatable-companies">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Balance</th>
+            </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Planes -->
+    <!--<div class="col-lg-7">-->
+      <!--<div class="ibox float-e-margins">-->
+        <!--<div class="ibox-title"><h5>Planes</h5></div>-->
+        <!--<div class="ibox-content">-->
+          <!--<table class="table table-hover datatable-planes">-->
+            <!--<thead>-->
+            <!--<tr>-->
+              <!--<th>#</th>-->
+              <!--<th>Capacity</th>-->
+              <!--<th>Company</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+          <!--</table>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+
+  <div class="row">
+
     <!-- Flights -->
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Flights</h5></div>
         <div class="ibox-content">
-          <table class="table table-hover">
+          <table class="table table-hover datatable-flights">
             <thead>
             <tr>
-              <th>#</th>
               <th>Company</th>
-              <th>Plane</th>
+              <!--<th>Plane</th>-->
               <th>Type</th>
               <th>Profit min.</th>
               <th>Profit total</th>
@@ -157,37 +125,12 @@
               <th>Departure date (real)</th>
               <th>Arrival date</th>
               <th>Arrival city</th>
-              <th class="text-navy">Booked by</th>
+              <th class="text-navy" style="width:110px">Booked by</th>
               <th class="text-navy">Nb. seats</th>
+              <th class="text-navy">Price</th>
             </tr>
             </thead>
-            <tbody>
-            <% _.each(flights, function (entry) { %>
-            <tr>
-              <td><%= entry.id %></td>
-              <td><%= entry.company.name %></td>
-              <td><%= entry.plane.id %></td>
-              <td><%= entry.type %></td>
-              <td><%= entry.minProfit %> €</td>
-              <td><%= entry.totalProfit %> €</td>
-              <td><%= entry.pricePerLot %> €</td>
-              <td class="timestamp"><%= entry.departureDatePlanned %></td>
-              <td class="timestamp"><%= entry.departureDateReal %></td>
-              <td class="timestamp"><%= entry.arrivalDate %></td>
-              <td><%= entry.arrivalCity.name %></td>
-              <td class="text-navy">
-                <% _.each(entry.bookings, function (booking) { %>
-                  <%= booking.organization.name %><br>
-                <% }) %>
-              </td>
-              <td class="text-navy">
-                <% _.each(entry.bookings, function (booking) { %>
-                  <%= booking.seats %><br>
-                <% }) %>
-              </td>
-            </tr>
-            <% }) %>
-            </tbody>
+
           </table>
         </div>
       </div>
@@ -198,11 +141,11 @@
   <div class="row">
 
     <!-- Diseases -->
-    <div class="col-lg-3">
+    <div class="col-lg-6">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Diseases</h5></div>
         <div class="ibox-content">
-          <table class="table table-hover">
+          <table class="table table-hover datatable-diseases">
             <thead>
             <tr>
               <th>#</th>
@@ -211,27 +154,17 @@
               <th>Incubation (days)</th>
             </tr>
             </thead>
-            <tbody>
-            <% _.each(diseases, function (entry) { %>
-            <tr>
-              <td><%= entry.id %></td>
-              <td><%= entry.name %></td>
-              <td><%= entry.virulence %></td>
-              <td><%= entry.incubation %></td>
-            </tr>
-            <% }) %>
-            </tbody>
           </table>
         </div>
       </div>
     </div>
 
     <!-- Vaccines -->
-    <div class="col-lg-4">
+    <div class="col-lg-6">
       <div class="ibox float-e-margins">
         <div class="ibox-title"><h5>Vaccines</h5></div>
         <div class="ibox-content">
-          <table class="table table-hover">
+          <table class="table table-hover datatable-vaccines">
             <thead>
               <tr>
                 <th>#</th>
@@ -241,48 +174,6 @@
                 <th>For disease</th>
               </tr>
             </thead>
-            <tbody>
-              <% _.each(vaccines, function (entry) { %>
-              <tr>
-                <td><%= entry.id %></td>
-                <td><%= entry.name %></td>
-                <td><%= entry.expire %></td>
-                <td><%= entry.price %> €</td>
-                <td><%= entry.treatenDisease.name %></td>
-              </tr>
-              <% }) %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- Patients -->
-    <div class="col-lg-5">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title"><h5>Sick (patients)</h5></div>
-        <div class="ibox-content">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>First name</th>
-              <th>Last name</th>
-              <th>Infected</th>
-              <th>Vaccinated</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% _.each(sick, function (entry) { %>
-            <tr>
-              <td><%= entry.id %></td>
-              <td><%= entry.firstName %></td>
-              <td><%= entry.lastName %></td>
-              <td class="timestamp"><%= entry.infectedDay %></td>
-              <td class="timestamp"><%= entry.vaccinatedDay %></td>
-            </tr>
-            <% }) %>
-            </tbody>
           </table>
         </div>
       </div>
@@ -292,65 +183,72 @@
 
   <div class="row">
 
-    <!-- Laboratories -->
-    <div class="col-lg-5">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title"><h5>Laboratories</h5></div>
-        <div class="ibox-content">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Type</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% _.each(laboratories, function (entry) { %>
-            <tr>
-              <td><%= entry.id %></td>
-              <td><%= entry.name %></td>
-              <td><%= entry.type %></td>
-            </tr>
-            <% }) %>
-            </tbody>
-          </table>
+    <div class="col-lg-6">
+      <!-- Patients -->
+        <div class="ibox float-e-margins">
+          <div class="ibox-title"><h5>Sick (patients)</h5></div>
+          <div class="ibox-content">
+            <table class="table table-hover datatable-patients">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Infected</th>
+                <th>Vaccinated</th>
+              </tr>
+              </thead>
+            </table>
+          </div>
         </div>
-      </div>
     </div>
 
-    <!-- Laboratories -->
-    <div class="col-lg-7">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title"><h5>Vaccine stocks</h5></div>
-        <div class="ibox-content">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Vaccine</th>
-              <th>Laboratory</th>
-              <th>Created at</th>
-              <th>Number</th>
-              <th>Unit price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% _.each(stocks, function (entry) { %>
-            <tr>
-              <td><%= entry.id %></td>
-              <td><%= entry.vaccine.name %></td>
-              <td><%= entry.laboratory.name %></td>
-              <td class="timestamp"><%= entry.createdAt %></td>
-              <td><%= entry.number %></td>
-              <td><%= entry.unitPrice %></td>
-            </tr>
-            <% }) %>
-            </tbody>
-          </table>
+    <div class="col-lg-6">
+
+      <div class="row">
+        <!-- Laboratories -->
+        <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title"><h5>Laboratories</h5></div>
+            <div class="ibox-content">
+              <table class="table table-hover datatable-laboratories">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Type</th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
+
+      <div class="row">
+        <!-- Vaccine stock -->
+        <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title"><h5>Vaccine stocks</h5></div>
+            <div class="ibox-content">
+              <table class="table table-hover datatable-stocks">
+                <thead>
+                <tr>
+                  <th>Vaccine</th>
+                  <th>Laboratory</th>
+                  <th>Created at</th>
+                  <th>Number</th>
+                  <th>Unit price</th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
 
   </div>
 
@@ -361,6 +259,14 @@
 <script>
 $(document).ready(function() {
 
+    function displayDate(timestamp){
+      if( timestamp == '' || timestamp == "null" || timestamp == null  ){
+        return '-'
+      }
+      else{
+        return moment(parseInt(timestamp)).format("MM/DD/YYYY, H:mm:ss");
+      }
+    }
     // Countries
     var countriesTable = $('.dataTables-countries').DataTable({
         "paging": false,
@@ -371,13 +277,273 @@ $(document).ready(function() {
         "serverSide": true,
         "ajax": "/rest/countries",
         "columns": [
-          { "data": "id" },
-          { "data": "name" },
+            { "data": "id" },
+            { "data": "name" },
         ]
     });
+
+    // Organizations
+    var organizationsTable = $('.datatable-organizations').DataTable({
+      "paging": false,
+      "ordering": false,
+      "info":     false,
+      "searching": false,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/rest/organizations",
+      "columns": [
+          { "data": "id" },
+          { "data": "name" },
+          { "data": "capital"}
+      ],
+      "columnDefs": [
+        {
+          "render": function ( data, type, row ) {
+            return data +' (€)';
+          },
+          "targets": [ 2 ]
+        }
+      ]
+    });
+
+    // Cities
+    var citiesTable = $('.datatable-cities').DataTable({
+      "paging": false,
+      "ordering": false,
+      "info":     false,
+      "searching": false,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/rest/cities",
+      "columns": [
+        { "data": "id" },
+        { "data": "name" },
+        { "data": "country.name"}
+      ]
+    });
+
+    // Planes
+//    var planesTable = $('.datatable-planes').DataTable({
+//      "paging": false,
+//      "ordering": false,
+//      "info":     false,
+//      "searching": false,
+//      "processing": true,
+//      "serverSide": true,
+//      "ajax": "/rest/planes",
+//      "columns": [
+//        { "data": "id" },
+//        { "data": "capacity" },
+//        { data: "company.name" }
+//      ]
+//    });
+
+    // Companies
+    var companiesTable = $('.datatable-companies').DataTable({
+      "paging": false,
+      "ordering": false,
+      "info":     false,
+      "searching": false,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/rest/companies",
+      "columns": [
+        { "data": "id" },
+        { "data": "name" },
+        { "data": "balance" },
+      ],
+      "columnDefs": [
+        {
+          "render": function( data, type, row){
+            return data + ' (€)';
+          },
+          targets: 2
+        }
+      ]
+    });
+
+    var flightsTable = $('.datatable-flights').DataTable({
+      "paging": true,
+      "ordering": true,
+      "searching": true,
+      "processing": true,
+      "serverSide": false,
+      "ajax": "/rest/flights",
+      "columns": [
+        { "data": "company.name" },
+//        { "data": "plane.id" },
+        { "data": "type" },
+        { "data": "minProfit" },
+        { "data": "totalProfit" },
+        { "data": "pricePerLot" },
+        { "data": "departureDatePlanned" },
+        { "data": "departureDateReal" },
+        { "data": "arrivalDate", className: 'timestamp' },
+        { data: "arrivalCity.name" },
+        { data: "bookings" },
+        { data: "bookings" },
+        { data: "bookings" }
+      ],
+      "columnDefs": [
+        {
+          "render": function ( data, type, row ) {
+            return displayDate(data);
+          },
+          "targets": [5,6,7]
+        },
+        {
+          "render": function ( data, type, row ) {
+            return data +' (€)';
+          },
+          "targets": [ 2,3,4 ]
+        },
+        {
+          "render": function( data, type, row){
+            // data = booking
+            var html = '';
+            _.each(data, function(entry){
+              html += entry.organization.name + '<br>';
+            });
+            return html;
+          },
+          targets: [9]
+        },
+        {
+          "render": function( data, type, row){
+            // data = booking
+            var html = '';
+            _.each(data, function(entry){
+              html += entry.seats + '<br>';
+            });
+            return html;
+          },
+          targets: [10]
+        },
+        {
+          "render": function( data, type, row){
+            // data = booking
+            var html = '';
+            _.each(data, function(entry){
+              html += entry.price + '(€)<br>';
+            });
+            return html;
+          },
+          targets: [11]
+        }
+      ]
+    });
+
+    var diseasesTable = $('.datatable-diseases').DataTable({
+      "paging": false,
+      "ordering": false,
+      "info":     false,
+      "searching": false,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/rest/diseases",
+      "columns": [
+        { "data": "id" },
+        { "data": "name" },
+        { "data": "virulence" },
+        { "data": "incubation" },
+      ]
+    });
+
+    var vaccinesTable = $('.datatable-vaccines').DataTable({
+      "paging": false,
+      "ordering": false,
+      "info":     false,
+      "searching": false,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/rest/vaccines",
+      "columns": [
+        { "data": "id" },
+        { "data": "name" },
+        { "data": "expire" },
+        { "data": "price" },
+        { "data": "treatenDisease.name" },
+      ]
+    });
+
+    var laboratoriesTable = $('.datatable-laboratories').DataTable({
+      "paging": false,
+      "ordering": false,
+      "info":     false,
+      "searching": false,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/rest/laboratories",
+      "columns": [
+        { "data": "id" },
+        { "data": "name" },
+        { "data": "type" },
+      ]
+    });
+
+    var stocksTable = $('.datatable-stocks').DataTable({
+      "paging": false,
+      "ordering": false,
+      "info":     false,
+      "searching": false,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/rest/stocks",
+      "columns": [
+        { "data": "vaccine.name" },
+        { "data": "laboratory.name" },
+        { "data": "createdAt" },
+        { "data": "number" },
+        { "data": "unitPrice" },
+      ],
+      "columnDefs": [
+        {
+          "render": function ( data, type, row ) {
+            return displayDate(data);
+          },
+          "targets": [2]
+        },
+      ]
+    });
+
+    var patientsTable = $('.datatable-patients').DataTable({
+      "paging": false,
+      "ordering": false,
+      "info":     false,
+      "searching": false,
+      "processing": true,
+      "serverSide": true,
+      "ajax": "/rest/patients",
+      "columns": [
+        { "data": "firstName" },
+        { "data": "lastName" },
+        { "data": "infectedDay" },
+        { "data": "vaccinatedDay" },
+      ],
+      "columnDefs": [
+        {
+          "render": function ( data, type, row ) {
+            return displayDate(data);
+          },
+          "targets": [2,3]
+        },
+      ]
+    });
+
     setInterval( function () {
       countriesTable.ajax.reload();
-    }, 20000 );
+      citiesTable.ajax.reload();
+      organizationsTable.ajax.reload();
+      companiesTable.ajax.reload();
+//      planesTable.ajax.reload();
+      flightsTable.ajax.reload();
+      diseasesTable.ajax.reload();
+      vaccinesTable.ajax.reload();
+      laboratoriesTable.ajax.reload();
+      stocksTable.ajax.reload();
+      patientsTable.ajax.reload();
+    }, 10000 );
+
 
 });
 </script>

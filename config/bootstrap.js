@@ -47,8 +47,8 @@ module.exports.bootstrap = function(cb) {
         // company
         function(countries, cities, cb){
           var entries = [
-            { name: 'company a' },
-            { name: 'company b' }
+            { name: 'company a', balance: 15000 },
+            { name: 'company b', balance: 25620 }
           ];
           async.map(entries, function(company, cb){
             Company.create(company).exec(function(err, company){
@@ -59,47 +59,47 @@ module.exports.bootstrap = function(cb) {
           });
         },
         // Planes
-        function(countries, cities, companies, cb){
-          var entries = [
-            { company: companies[0], capacity: 200 },
-            { company: companies[0], capacity: 150 },
-            { company: companies[1], capacity: 200 },
-            { company: companies[1], capacity: 300 },
-            { company: companies[1], capacity: 122 }
-          ];
-          async.map(entries, function(entry, cb){
-            Plane.create(entry).exec(function(err, object){
-              return cb(err, object);
-            })
-          }, function(err, results){
-            return cb(err, countries, cities, companies, results);
-          });
-        },
+        //function(countries, cities, companies, cb){
+        //  var entries = [
+        //    { company: companies[0], capacity: 200 },
+        //    { company: companies[0], capacity: 150 },
+        //    { company: companies[1], capacity: 200 },
+        //    { company: companies[1], capacity: 300 },
+        //    { company: companies[1], capacity: 122 }
+        //  ];
+        //  async.map(entries, function(entry, cb){
+        //    Plane.create(entry).exec(function(err, object){
+        //      return cb(err, object);
+        //    })
+        //  }, function(err, results){
+        //    return cb(err, countries, cities, companies, results);
+        //  });
+        //},
         // flights
-        function(countries, cities, companies, planes, cb){
+        function(countries, cities, companies, cb){
             var entries = [
                 {
                     company: companies[0],
-                    plane: planes[0],
+                    //plane: planes[0],
                     type: 'charter',
                     minProfit: 10,
                     totalProfit: 50,
                     pricePerLot: 25,
-                    departureDatePlanned: Math.floor(new Date('2014-01-01 22:15:10') / 1000),
-                    departureDateReal: Math.floor(Date.now() / 1000),
-                    arrivalDate: Math.floor(Date.now() / 1000), // timestamp in second
+                    departureDatePlanned: new Date('2014-01-01 22:15:10').getTime(),
+                    departureDateReal: new Date().getTime(),
+                    arrivalDate: new Date().getTime(), // timestamp in second
                     arrivalCity: cities[0]
                 },
                 {
                     company: companies[1],
-                    plane: planes[3],
+                    //plane: planes[3],
                     type: 'charter',
                     minProfit: 10,
                     totalProfit: 50,
                     pricePerLot: 25,
-                    departureDatePlanned: Math.floor(Date.now() / 1000),
-                    departureDateReal: Math.floor(Date.now() / 1000),
-                    arrivalDate: Math.floor(Date.now() / 1000), // timestamp in second
+                    departureDatePlanned: new Date().getTime(),
+                    departureDateReal: new Date().getTime(),
+                    arrivalDate: new Date().getTime(), // timestamp in second
                     arrivalCity: cities[1]
                 },
             ];
@@ -108,11 +108,11 @@ module.exports.bootstrap = function(cb) {
                     return cb(err, object);
                 })
             }, function(err, results){
-                return cb(err, countries, cities, companies, planes, results);
+                return cb(err, countries, cities, companies, results);
             });
         },
         // Disease
-        function(countries, cities, companies, planes, flights, cb){
+        function(countries, cities, companies, flights, cb){
           var entries = [
             { name: 'Disease a', incubation: 10, virulence: 2 },
             { name: 'Disease b', incubation: 10, virulence: 5 },
@@ -160,9 +160,9 @@ module.exports.bootstrap = function(cb) {
         // Flight bookings
         function(countries, cities, companies, flights, diseases, vaccines, organizations,  cb){
             var entries = [
-                { organization: organizations[0], flight: flights[0], seats: 150 },
-                { organization: organizations[1], flight: flights[0], seats: 10 },
-                { organization: organizations[1], flight: flights[1], seats: 120 },
+                { organization: organizations[0], flight: flights[0], seats: 150, price: 58 },
+                { organization: organizations[1], flight: flights[0], seats: 10, price: 12 },
+                { organization: organizations[1], flight: flights[1], seats: 120, price: 120 },
             ];
             async.map(entries, function(entry, cb){
                 FlightBooking.create(entry).exec(function(err, object){
@@ -210,24 +210,25 @@ module.exports.bootstrap = function(cb) {
         // Laboratory
         function(results, cb){
             var entries = [
-                { name: 'Grand laboratory a', type: 'grand' },
-                { name: 'Grand laboratory b', type: 'grand' },
-                { name: 'Generic laboratory a', type: 'generic' },
+                { name: 'Grand laboratory a', type: 'grand', isGeneric: false },
+                { name: 'Grand laboratory b', type: 'grand', isGeneric: false },
+                { name: 'Generic laboratory a', type: 'generic', isGeneric: true },
             ];
             async.map(entries, function(entry, cb){
                 Laboratory.create(entry).exec(function(err, object){
-                    switch(entry.type){
-                        case 'generic':
-                            GenericLaboratory.create({id: object.id}).exec(function(err, objec2){
-                                return cb(err, object);
-                            });
-                            break;
-                        default:
-                            GrandGroupLaboratory.create({id: object.id}).exec(function(err, objec2){
-                                return cb(err, object);
-                            })
-                            break;
-                    }
+                    //switch(entry.type){
+                    //    case 'generic':
+                    //        GenericLaboratory.create({id: object.id}).exec(function(err, objec2){
+                    //            return cb(err, object);
+                    //        });
+                    //        break;
+                    //    default:
+                    //        GrandGroupLaboratory.create({id: object.id}).exec(function(err, objec2){
+                    //            return cb(err, object);
+                    //        })
+                    //        break;
+                    //}
+                    return cb(err, object);
                 });
             }, function(err, res){
                 results.laboratories = res;
@@ -237,12 +238,12 @@ module.exports.bootstrap = function(cb) {
         // Stocks
         function(results, cb){
             var entries = [
-                { laboratory: results.laboratories[0], vaccine: results.vaccines[0], createdAt: Math.floor(Date.now() / 1000), number: 53, unitPrice: 10.56 },
-                { laboratory: results.laboratories[1], vaccine: results.vaccines[1], createdAt: Math.floor(Date.now() / 1000), number: 360, unitPrice: 1 },
-                { laboratory: results.laboratories[2], vaccine: results.vaccines[1], createdAt: Math.floor(Date.now() / 1000), number: 100, unitPrice: 6 },
-                { laboratory: results.laboratories[2], vaccine: results.vaccines[0], createdAt: Math.floor(Date.now() / 1000), number: 2, unitPrice: 5.9 },
-                { laboratory: results.laboratories[1], vaccine: results.vaccines[2], createdAt: Math.floor(Date.now() / 1000), number: 45, unitPrice: 7.03 },
-                { laboratory: results.laboratories[1], vaccine: results.vaccines[0], createdAt: Math.floor(Date.now() / 1000), number: 78, unitPrice: 10 },
+                { laboratory: results.laboratories[0], vaccine: results.vaccines[0], createdAt: new Date().getTime(), number: 53, unitPrice: 10.56 },
+                { laboratory: results.laboratories[1], vaccine: results.vaccines[1], createdAt: new Date().getTime(), number: 360, unitPrice: 1 },
+                { laboratory: results.laboratories[2], vaccine: results.vaccines[1], createdAt: new Date().getTime(), number: 100, unitPrice: 6 },
+                { laboratory: results.laboratories[2], vaccine: results.vaccines[0], createdAt: new Date().getTime(), number: 2, unitPrice: 5.9 },
+                { laboratory: results.laboratories[1], vaccine: results.vaccines[2], createdAt: new Date().getTime(), number: 45, unitPrice: 7.03 },
+                { laboratory: results.laboratories[1], vaccine: results.vaccines[0], createdAt: new Date().getTime(), number: 78, unitPrice: 10 },
             ];
             async.map(entries, function(entry, cb){
                 VaccineStock.create(entry).exec(function(err, object){

@@ -7,7 +7,7 @@ var City = {
   attributes: {
       //id  : { type: 'string', unique: true, primaryKey: true, columnName: 'id', autoIncrement: true },
       name: { type:'string', unique: true, columnName: 'nom', required: true},
-      country: { model: 'Country', required: true }
+      country: { model: 'Country', required: true, columnName: 'pays' }
   }
 
 };

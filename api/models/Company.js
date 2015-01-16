@@ -7,7 +7,8 @@ var Company = {
   attributes: {
     //id  : { type: 'string', unique: true, primaryKey: true, columnName: 'id', autoIncrement: true },
     name     : { type: 'string',  required: true, unique: true, columnName: 'nom' },
-    planes: { collection: 'plane', via: 'company' }
+    //planes: { collection: 'plane', via: 'company' }
+    balance: { type:'integer', required: true, columnName: 'solde'}
   }
 
 };

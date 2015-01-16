@@ -286,7 +286,8 @@ $(document).ready(function() {
         return '-'
       }
       else{
-        return moment(parseInt(timestamp)).format("MM/DD/YYYY, H:mm:ss");
+        console.log(timestamp);
+        return moment(timestamp).format("MM/DD/YYYY, H:mm:ss");
       }
     }
     // Countries

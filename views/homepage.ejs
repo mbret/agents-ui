@@ -252,6 +252,28 @@
 
   </div>
 
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Patients -->
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h5>Bought vaccines</h5></div>
+        <div class="ibox-content">
+          <table class="table table-hover datatable-boughtvaccines">
+            <thead>
+            <tr>
+              <th>Sum</th>
+              <th>Number</th>
+              <th>Date</th>
+              <th>Laboratory</th>
+              <th>Vaccine</th>
+              <th>Organization</th>
+            </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -530,6 +552,32 @@ $(document).ready(function() {
       ]
     });
 
+  var boughtVaccinesTable = $('.datatable-boughtvaccines').DataTable({
+    "paging": false,
+    "ordering": false,
+    "info":     false,
+    "searching": false,
+    "processing": true,
+    "serverSide": true,
+    "ajax": "/rest/boughtVaccines",
+    "columns": [
+      { "data": "sum" },
+      { "data": "number" },
+      { "data": "date" },
+      { "data": "laboratory.name" },
+      { "data": "vaccine.name" },
+      { "data": "organization.name" },
+    ],
+    "columnDefs": [
+      {
+        "render": function ( data, type, row ) {
+          return displayDate(data);
+        },
+        "targets": [2]
+      },
+    ]
+  });
+
     setInterval( function () {
       countriesTable.ajax.reload();
       citiesTable.ajax.reload();
@@ -542,6 +590,7 @@ $(document).ready(function() {
       laboratoriesTable.ajax.reload();
       stocksTable.ajax.reload();
       patientsTable.ajax.reload();
+      boughtVaccinesTable.ajax.reload();
     }, 10000 );
 
 

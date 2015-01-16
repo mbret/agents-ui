@@ -171,8 +171,17 @@ var RestController = {
         .catch(function(err){
             return res.serverError(err);
         });
-    }
+    },
 
+    getBoughtVaccines: function(req, res){
+        BoughtVaccine.find().populate('vaccine').populate('laboratory').populate('organization')
+            .then(function(entries){
+                return res.ok({data: entries});
+            })
+            .catch(function(err){
+                return res.serverError(err);
+            });
+    }
 };
 
 module.exports = RestController;

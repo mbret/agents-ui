@@ -50,8 +50,8 @@ module.exports.routes = {
   'get /rest/vaccines': 'RestController.getVaccines',
   'get /rest/laboratories': 'RestController.getLaboratories',
   'get /rest/stocks': 'RestController.getStocks',
-  'get /rest/patients': 'RestController.getPatients'
-
+  'get /rest/patients': 'RestController.getPatients',
+  'get /rest/boughtvaccines': 'RestController.getBoughtVaccines'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

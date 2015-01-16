@@ -11,7 +11,7 @@ var BoughtVaccine = {
   attributes: {
     sum  : { type: 'integer', columnName: 'somme' },
     number  : { type: 'integer', columnName: 'nombre' },
-    date  : { type: 'date', columnName: 'dateAchat' },
+    date  : { type: 'integer', columnName: 'dateAchat' },
     laboratory  : { model: 'laboratory', columnName: 'laboratoire' },
     vaccine  : { model: 'vaccine', columnName: 'vaccin' },
     organization: { model: 'organization', columnName: 'association' }

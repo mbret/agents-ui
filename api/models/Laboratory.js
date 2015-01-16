@@ -5,7 +5,7 @@ var Promise = require('bluebird');
  */
 var Laboratory = {
   //schema: true,
-  tableName: 'labotatoire',
+  tableName: 'laboratoire',
 
     attributes: {
         //id  : { type: 'string', unique: true, primaryKey: true, columnName: 'id', autoIncrement: true },

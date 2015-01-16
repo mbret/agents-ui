@@ -118,15 +118,15 @@
               <th>Company</th>
               <!--<th>Plane</th>-->
               <th>Type</th>
-              <th>Profit min.</th>
-              <th>Profit total</th>
+              <!--<th>Profit min.</th>-->
+              <!--<th>Profit total</th>-->
               <th>Price per lot</th>
-              <th>Departure date (planned)</th>
+              <!--<th>Departure date (planned)</th>-->
               <th>Departure date (real)</th>
               <th>Arrival date</th>
-              <th>Arrival city</th>
+              <!--<th>Arrival city</th>-->
               <th class="text-navy" style="width:110px">Booked by</th>
-              <th class="text-navy">Nb. seats</th>
+              <!--<th class="text-navy">Nb. seats</th>-->
               <th class="text-navy">Price</th>
             </tr>
             </thead>
@@ -395,15 +395,15 @@ $(document).ready(function() {
         { "data": "company.name" },
 //        { "data": "plane.id" },
         { "data": "type" },
-        { "data": "minProfit" },
-        { "data": "totalProfit" },
+//        { "data": "minProfit" },
+//        { "data": "totalProfit" },
         { "data": "pricePerLot" },
-        { "data": "departureDatePlanned" },
-        { "data": "departureDateReal" },
-        { "data": "arrivalDate", className: 'timestamp' },
-        { data: "arrivalCity.name" },
+//        { "data": "departureDatePlanned" },
+        { "data": "departureDateReal" }, // date
+        { "data": "arrivalDate", className: 'timestamp' }, // date
+//        { data: "arrivalCity.name" },
         { data: "bookings" },
-        { data: "bookings" },
+//        { data: "bookings" },
         { data: "bookings" }
       ],
       "columnDefs": [
@@ -411,13 +411,13 @@ $(document).ready(function() {
           "render": function ( data, type, row ) {
             return displayDate(data);
           },
-          "targets": [5,6,7]
+          "targets": [3,4]
         },
         {
           "render": function ( data, type, row ) {
             return data +' (€)';
           },
-          "targets": [ 2,3,4 ]
+          "targets": [ 2 ]
         },
         {
           "render": function( data, type, row){
@@ -428,19 +428,19 @@ $(document).ready(function() {
             });
             return html;
           },
-          targets: [9]
+          targets: [5]
         },
-        {
-          "render": function( data, type, row){
-            // data = booking
-            var html = '';
-            _.each(data, function(entry){
-              html += entry.seats + '<br>';
-            });
-            return html;
-          },
-          targets: [10]
-        },
+//        {
+//          "render": function( data, type, row){
+//            // data = booking
+//            var html = '';
+//            _.each(data, function(entry){
+//              html += entry.seats + '<br>';
+//            });
+//            return html;
+//          },
+//          targets: [10]
+//        },
         {
           "render": function( data, type, row){
             // data = booking
@@ -450,7 +450,7 @@ $(document).ready(function() {
             });
             return html;
           },
-          targets: [11]
+          targets: [6]
         }
       ]
     });

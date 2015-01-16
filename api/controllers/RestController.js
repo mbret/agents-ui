@@ -72,11 +72,12 @@ var RestController = {
         var obj = {};
         Organization.find()
             .then(function(organizations){
-                Flight.find().populate('company')/*.populate('plane')*/.populate('arrivalCity').populate('bookings')
+                Flight.find().populate('company')/*.populate('plane')*//*.populate('arrivalCity')*/.populate('bookings')
                     .then(function(entries){
                         obj.flights = entries;
                         // fill booking
                         _.forEach(entries, function(entry){
+                            entry.type = entry.isCharter ? 'Charter' : 'Normal';
                             _.forEach(entry.bookings, function(booking){
                                 booking.organization = findOrganizationById( booking.organization, organizations );
                             });

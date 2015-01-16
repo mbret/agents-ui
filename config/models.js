@@ -20,6 +20,8 @@ module.exports.models = {
   // connection: 'localDiskDb',
   connection: 'mysql',
 
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
   /***************************************************************************
   *                                                                          *
   * How and whether Sails will attempt to automatically rebuild the          *

@@ -2,7 +2,7 @@
 var VaccineStock = {
 
     // Enforce model schema in the case of schemaless databases
-    //schema: true,
+    schema: true,
     tableName: 'stocks',
 
     attributes: {

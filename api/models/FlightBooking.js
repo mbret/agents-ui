@@ -5,9 +5,10 @@ var FlightBooking = {
   tableName: 'reservationvol',
 
   attributes: {
+      id: { type:'integer', primaryKey: true, columnName: 'idReservation'},
       organization: { model: 'organization', required: true, columnName:'idAsso' },
       flight: { model: 'flight', required: true, columnName:'idVol' },
-      seats: { type:'integer', required: true, columnName:'nbPlaces' },
+      //seats: { type:'integer', required: true, columnName:'nbPlaces' },
       price: { type: 'integer', required: true, columnName: 'prix' }
   }
 
